@@ -11,11 +11,12 @@ require('map/MousePosition');
 require('map/RestoreMap');
 
 // Factories for creating map layers
-require('map/DarkLayer');
-require('map/GreyscaleLayer');
-require('map/SatelliteLayer');
-require('map/StationsLayer');
-require('map/TerrainLayer');
+// require('map/DarkLayer');
+// require('map/GreyscaleLayer');
+// require('map/SatelliteLayer');
+// require('map/StationsLayer');
+// require('map/TerrainLayer');
+require('map/OceanLayer');
 
 
 /*
@@ -109,28 +110,33 @@ var IndexMap = function (options) {
    *     }
    */
   _getMapLayers = function () {
-    var dark,
-        greyscale,
-        layers,
-        satellite,
-        terrain;
+    var layers,
+        ocean;
 
-    dark = L.darkLayer();
-    greyscale = L.greyscaleLayer();
-    satellite = L.satelliteLayer();
-    terrain = L.terrainLayer();
+    // var dark,
+    //     greyscale,
+    //     layers,
+    //     satellite,
+    //     terrain;
+
+    // dark = L.darkLayer();
+    // greyscale = L.greyscaleLayer();
+    // satellite = L.satelliteLayer();
+    // terrain = L.terrainLayer();
+    ocean = L.oceanLayer();
 
     layers = {};
     layers.baseLayers = {
-      'Terrain': terrain,
-      'Satellite': satellite,
-      'Greyscale': greyscale,
-      'Dark': dark
+      // 'Terrain': terrain,
+      // 'Satellite': satellite,
+      // 'Greyscale': greyscale,
+      // 'Dark': dark
+      'Ocean': ocean
     };
     layers.overlays = {
       'Stations': _stations
     };
-    layers.defaults = [terrain, _stations];
+    layers.defaults = [ocean, _stations];
 
     return layers;
   };
@@ -147,6 +153,7 @@ var IndexMap = function (options) {
 
     // Create map
     map = L.map(_el, {
+      attributionControl: false,
       layers: layers.defaults,
       scrollWheelZoom: false
     });
