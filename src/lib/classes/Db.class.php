@@ -9,7 +9,7 @@
  * @author Scott Haefner <shaefner@usgs.gov>
  */
 class Db {
-  private static $db;
+  private $db;
   private $_pdo;
 
   public function __construct($connectionType=NULL) {
@@ -125,6 +125,6 @@ class Db {
       WHERE `$column` = 'TRUE'
       ORDER BY `site`, `type`, `network` ASC";
 
-    return $this->_execQuery($sql, $params);
+    return $this->_execQuery($sql);
   }
 }

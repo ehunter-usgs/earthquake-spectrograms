@@ -14,8 +14,9 @@ require('map/RestoreMap');
 // require('map/DarkLayer');
 // require('map/GreyscaleLayer');
 // require('map/SatelliteLayer');
-// require('map/StationsLayer');
+require('map/StationsLayer');
 // require('map/TerrainLayer');
+require('map/UsgsTerrain');
 require('map/OceanLayer');
 
 
@@ -110,7 +111,8 @@ var IndexMap = function (options) {
    *     }
    */
   _getMapLayers = function () {
-    var layers,
+    var usgsTerrain,
+        layers,
         ocean;
 
     // var dark,
@@ -119,24 +121,28 @@ var IndexMap = function (options) {
     //     satellite,
     //     terrain;
 
+
     // dark = L.darkLayer();
     // greyscale = L.greyscaleLayer();
     // satellite = L.satelliteLayer();
     // terrain = L.terrainLayer();
     ocean = L.oceanLayer();
+    usgsTerrain = L.usgsTerrain();
 
     layers = {};
     layers.baseLayers = {
       // 'Terrain': terrain,
       // 'Satellite': satellite,
       // 'Greyscale': greyscale,
-      // 'Dark': dark
-      'Ocean': ocean
+      // 'Dark': dark,
+      'Ocean': ocean,
+      'Terrain': usgsTerrain,
     };
     layers.overlays = {
       'Stations': _stations
     };
     layers.defaults = [ocean, _stations];
+    // layers.defaults = [terrain, _stations];
 
     return layers;
   };

@@ -11,17 +11,17 @@ var Util = require('util/Util');
  *
  * @return {L.TileLayer}
  */
-var OceanLayer = function (options) {
+var UsgsTerrain = function (options) {
   options = Util.extend({
     maxZoom: 16,
   }, options);
 
   return L.tileLayer(
-    'https://services.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}',
+    'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}',
     options
   );
 };
 
-L.oceanLayer = OceanLayer;
+L.usgsTerrain = UsgsTerrain;
 
-module.exports = OceanLayer;
+module.exports = UsgsTerrain;
