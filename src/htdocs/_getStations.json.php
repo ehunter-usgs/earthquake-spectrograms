@@ -109,4 +109,4 @@ while ($row = $rsStations->fetch(PDO::FETCH_ASSOC)) {
 }
 
 // Send json stream to browser
-showJson($output, $callback);
+showJson($output);
